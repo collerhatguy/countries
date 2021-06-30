@@ -11,15 +11,15 @@ export default function CountryCard({country}) {
                     {country.name}
                 </h2>
                 <h3 className="country-population">
-                    <span className="country-label">Population:</span> 
+                    <span className="country-label">Population: </span> 
                     {country.population}
                 </h3>
                 <h3 className="country-region">
-                    <span className="country-label">Region:</span>
+                    <span className="country-label">Region: </span>
                     {country.region}
                 </h3>
                 <h3 className="country-capital">
-                    <span className="country-label">Capital:</span>
+                    <span className="country-label">Capital: </span>
                     {country.capital}
                 </h3>
             </div>

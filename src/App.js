@@ -1,4 +1,7 @@
 import {useState, useEffect} from "react";
+import SearchSection from "./components/SearchSection";
+import Header from "./components/Header";
+import CountryList from "./components/CountryList";
 import "./style/style.css";
 
 function App() {
@@ -19,6 +22,9 @@ function App() {
   },[])
   return (
     <div className="App">
+      <Header />
+      <SearchSection />
+      <CountryList countries={data} />
     </div>
   );
 }
