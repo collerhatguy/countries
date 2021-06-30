@@ -6,7 +6,7 @@ import "./style/style.css";
 
 function App() {
   const url = "https://restcountries.eu/rest/v2/all";
-  const [data, setData] = useState()
+  const [data, setData] = useState([])
   async function getData() {
     try {
       const response = await fetch(url);
@@ -21,11 +21,11 @@ function App() {
     getData()
   },[])
   return (
-    <div className="App">
+    <main className="App">
       <Header />
       <SearchSection />
       <CountryList countries={data} />
-    </div>
+    </main>
   );
 }
 

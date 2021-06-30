@@ -12,7 +12,7 @@ export default function CountryCard({country}) {
                 </h2>
                 <h3 className="country-population">
                     <span className="country-label">Population: </span> 
-                    {country.population}
+                    {country.population.toLocaleString("en-US")}
                 </h3>
                 <h3 className="country-region">
                     <span className="country-label">Region: </span>
