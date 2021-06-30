@@ -19,14 +19,43 @@ body {
     background-color: $dark-gray;
 }
 // 4. header
+header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    background-color: $white;
+    h1 {
+        font-weight: 800;
+        margin: 2rem;
+    }
+    button {
+        background-color: $white;
+        border: 0;
+        margin: 2rem;
+        font-weight: 300;
+    }
+}
 // 5. search section
+.search-section {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    input {
+        margin: 2rem;
+        padding: 1rem;
+    }
+}
+.search-bar {
+    width: 50%;
+}
 // 6. country list
 .country-list {
     width: 100%;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-auto-rows: minmax(min-content, 50vh);
-    gap: 2rem;
+    gap: 4rem;
     padding: 2rem;
 }
 // 7. country cards

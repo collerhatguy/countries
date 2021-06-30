@@ -65,6 +65,51 @@ body {
   background-color: #858585;
 }
 
+header {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
+  background-color: white;
+}
+
+header h1 {
+  font-weight: 800;
+  margin: 2rem;
+}
+
+header button {
+  background-color: white;
+  border: 0;
+  margin: 2rem;
+  font-weight: 300;
+}
+
+.search-section {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.search-section input {
+  margin: 2rem;
+  padding: 1rem;
+}
+
+.search-bar {
+  width: 50%;
+}
+
 .country-list {
   width: 100%;
   display: -ms-grid;
@@ -73,7 +118,7 @@ body {
       grid-template-columns: repeat(4, 1fr);
   grid-auto-rows: minmax(-webkit-min-content, 50vh);
   grid-auto-rows: minmax(min-content, 50vh);
-  gap: 2rem;
+  gap: 4rem;
   padding: 2rem;
 }
 
