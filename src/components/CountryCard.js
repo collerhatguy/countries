@@ -1,12 +1,18 @@
 import React from 'react'
 
-export default function CountryCard({country}) {
+export default function CountryCard({dark, country}) {
+    const darkStyles = {
+        backgroundColor: "hsl(209, 23%, 22%)",
+        color: "white"
+    }
     return (
         <div className="country-card">
             <div className="flag-container">
                 <img src={country.flag} />
             </div>
-            <div className="text-container">
+            <div 
+            style={dark ? darkStyles : {}}
+            className="text-container">
                 <h2 className="country-name">
                     {country.name}
                 </h2>

@@ -1,23 +1,46 @@
 import React from 'react'
 
-export default function SearchSection({setRegion}) {
+export default function SearchSection({dark, setRegion, setCountrySearch}) {
+    const darkStyles = { 
+        backgroundColor: "hsl(209, 23%, 22%)",
+        color: "white"
+    }
     return (
         <section className="search-section">
-            <input className="search-bar" type="text" placeholder="Search for a country" />
+            <input 
+            style={dark ? darkStyles : {}}
+            onChange={e => setCountrySearch(e.target.value)}
+            className="search-bar" 
+            type="text" 
+            placeholder="Search for a country" 
+            />
             <label for="region">
                 Filter by Region
                 <input 
+                style={dark ? darkStyles : {}}
                 onChange={e => setRegion(e.target.value)}
                 list="region-list" 
                 name="region" 
                 id="region" />
             </label>
-            <datalist id="region-list">
-                <option value="Africa"/>
-                <option value="America"/>
-                <option value="Asia"/>
-                <option value="Europe"/>
-                <option value="Oceania"/>
+            <datalist 
+            style={dark ? darkStyles : {}}
+            id="region-list">
+                <option 
+                style={dark ? darkStyles : {}}
+                value="Africa"/>
+                <option 
+                style={dark ? darkStyles : {}}
+                value="America"/>
+                <option 
+                style={dark ? darkStyles : {}}
+                value="Asia"/>
+                <option 
+                style={dark ? darkStyles : {}}
+                value="Europe"/>
+                <option 
+                style={dark ? darkStyles : {}}
+                value="Oceania"/>
             </datalist>
         </section>
     )

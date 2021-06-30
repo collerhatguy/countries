@@ -104,6 +104,7 @@ header button {
 .search-section input {
   margin: 2rem;
   padding: 1rem;
+  outline: none;
 }
 
 .search-bar {
@@ -120,6 +121,27 @@ header button {
   grid-auto-rows: minmax(min-content, 50vh);
   gap: 4rem;
   padding: 2rem;
+}
+
+@media (max-width: 900px) {
+  .country-list {
+    -ms-grid-columns: (1fr)[3];
+        grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 700px) {
+  .country-list {
+    -ms-grid-columns: (1fr)[2];
+        grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 500px) {
+  .country-list {
+    -ms-grid-columns: (1fr)[1];
+        grid-template-columns: repeat(1, 1fr);
+  }
 }
 
 .country-card {

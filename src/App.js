@@ -24,20 +24,33 @@ function App() {
     getData()
   },[]);
 
-  const [region, setRegion] = useState("")
+  const [regionSearch, setRegionSearch] = useState("")
   useEffect(() => {
     setData(initialData.filter(country => {
-      if (region === "") return true;
-      return country.region.includes(region);
+      if (regionSearch === "") return true;
+      return country.region.includes(regionSearch);
     }))
-  }, [region]);
+  }, [regionSearch]);
+
+  const [countrySearch, setCountrySearch] = useState("")
+  useEffect(() => {
+    setData(initialData.filter(country => {
+      if (countrySearch === "") return true;
+      return country.name.includes(countrySearch);
+    }))
+  }, [countrySearch]);
 
   const [dark, setDark] = useState(false);
+  const darkStyles = {
+    backgroundColor: "hsl(200, 15%, 8%)",
+  }
   return (
-    <main className="App">
+    <main 
+    style={dark ? darkStyles : {}}
+    className="App">
       <Header dark={dark} setDark={setDark} />
-      <SearchSection setRegion={setRegion} />
-      <CountryList countries={data} />
+      <SearchSection dark={dark} setRegion={setRegionSearch} setCountrySearch={setCountrySearch} />
+      <CountryList dark={dark} countries={data} />
     </main>
   );
 }

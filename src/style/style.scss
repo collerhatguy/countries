@@ -44,6 +44,7 @@ header {
     input {
         margin: 2rem;
         padding: 1rem;
+        outline: none;
     }
 }
 .search-bar {
@@ -57,6 +58,21 @@ header {
     grid-auto-rows: minmax(min-content, 50vh);
     gap: 4rem;
     padding: 2rem;
+}
+@media (max-width: 900px) {
+    .country-list {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+@media (max-width: 700px) {
+    .country-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (max-width: 500px) {
+    .country-list {
+        grid-template-columns: repeat(1, 1fr);
+    }
 }
 // 7. country cards
 .country-card {
