@@ -1,4 +1,6 @@
 import {useState, useEffect} from "react";
+import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
+
 import SearchSection from "./components/SearchSection";
 import Header from "./components/Header";
 import CountryList from "./components/CountryList";
@@ -49,8 +51,24 @@ function App() {
     style={dark ? darkStyles : {}}
     className="App">
       <Header dark={dark} setDark={setDark} />
-      <SearchSection dark={dark} setRegion={setRegionSearch} setCountrySearch={setCountrySearch} />
-      <CountryList dark={dark} countries={data} />
+      <Router>
+        <Switch>
+          <Route 
+            path="/" 
+            component={
+              <SearchSection 
+                dark={dark} 
+                setRegion={setRegionSearch} 
+                setCountrySearch={setCountrySearch} 
+              />
+            } 
+          />
+          <Route 
+            path="/" 
+            component={<CountryList dark={dark} countries={data} />} 
+          />
+        </Switch>
+      </Router>
     </main>
   );
 }
