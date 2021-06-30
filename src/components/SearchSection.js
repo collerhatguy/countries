@@ -14,7 +14,9 @@ export default function SearchSection({dark, setRegion, setCountrySearch}) {
             type="text" 
             placeholder="Search for a country" 
             />
-            <label for="region">
+            <label 
+            style={dark ? {color: "white"} : {}}
+            for="region">
                 Filter by Region
                 <input 
                 style={dark ? darkStyles : {}}

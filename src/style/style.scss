@@ -50,6 +50,13 @@ header {
 .search-bar {
     width: 50%;
 }
+@media(max-width: 500px) {
+    .search-section {
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+}
 // 6. country list
 .country-list {
     width: 100%;
