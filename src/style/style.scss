@@ -1,11 +1,13 @@
 // 1. reset
 // 2. variables
 // 3. mixins
-// 3.5: body
-// 4. header
-// 5. search section
-// 6. country list
-// 7. country cards
+// 4. general stlyes
+// 5. header
+// 6. search section
+// 7. country list
+// 8. country cards
+// 9. detailed page
+// 10. dark styles
 
 // 1. reset
 @import "./reset";
@@ -14,17 +16,17 @@
 @import "./variables";
 
 // 3. mixins
-// 3.5: body
-body {
+// 4. general styles
+body, .App {
     background-color: $dark-gray;
+    min-height: 100vh;
 }
 a {
     text-decoration: none;
     display: inline-block;
     color: black;
 }
-
-// 4. header
+// 5. header
 header {
     width: 100%;
     display: flex;
@@ -43,7 +45,7 @@ header {
     }
 }
 
-// 5. search section
+// 6. search section
 .search-section {
     width: 100%;
     display: flex;
@@ -65,7 +67,7 @@ header {
     }
 }
 
-// 6. country list
+// 7. country list
 .country-list {
     width: 100%;
     display: grid;
@@ -93,7 +95,7 @@ header {
     }
 }
 
-// 7. country cards
+// 8. country cards
 .country-card {
     background-color: $very-light-gray;
     display: grid;
@@ -118,7 +120,7 @@ header {
     margin-bottom: 2rem;
 }
 
-// 8. detailed page
+// 9. detailed page
 .detailed-page {
     padding: 3rem;
 }
@@ -151,4 +153,13 @@ header {
             margin-bottom: 1rem;
         }
     }
+}
+
+// 10. dark styles
+[data-dark="true"] {
+    background-color: $dark-blue;
+    color: $white;
+}
+:is(main, label, .App)[data-dark="true"] {
+    background-color: $very-dark-blue;
 }

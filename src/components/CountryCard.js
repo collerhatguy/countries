@@ -2,18 +2,14 @@ import React from 'react';
 import {Link } from "react-router-dom";
 
 export default function CountryCard({dark, country, moreDetail}) {
-    const darkStyles = {
-        backgroundColor: "hsl(209, 23%, 22%)",
-        color: "white"
-    }
     return (
         <Link onClick={() => moreDetail()} to="/details" >
             <div className="country-card">
                 <div className="flag-container">
                     <img src={country.flag} />
                 </div>
-                <div 
-                style={dark ? darkStyles : {}}
+                <div
+                data-dark={dark}
                 className="text-container">
                     <h2 className="country-name">
                         {country.name}

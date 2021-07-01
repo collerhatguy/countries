@@ -4,7 +4,7 @@ import CountryList from "./CountryList";
 
 export default function MainPage({dark, setRegionSearch, setCountrySearch, data, setCountry}) {
     return (
-        <main>
+        <main data-dark={dark}>
             <SearchSection 
             dark={dark} 
             setRegionSearch={setRegionSearch} 

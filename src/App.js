@@ -35,13 +35,9 @@ function App() {
   })
 
   const [dark, setDark] = useState(false);
-  const darkStyles = {
-    backgroundColor: "hsl(200, 15%, 8%)",
-  }
   return (
     <div 
     data-dark={dark}
-    style={dark ? darkStyles : {}}
     className="App">
       <Header dark={dark} setDark={setDark} />
       <Router>

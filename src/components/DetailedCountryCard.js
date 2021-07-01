@@ -7,26 +7,21 @@ export default function DetailedCountryCard({
     setCountry, 
     initialData
 }) {
-    
-    const darkStyles = {
-        backgroundColor: "hsl(200, 15%, 8%)",
-        color: "white"
-    }
+
     return (
-        <main className="detailed-page">
+        <main 
+        data-dark={dark}
+        className="detailed-page">
             <Link 
                 className="back-link"
-                style={dark ? {
-                    backgroundColor: "hsl(209, 23%, 22%)",
-                    color: "white"
-                } : {}}
+                data-dark={dark}           
                 to="/">Back</Link>
             <div className="detailed-country-card">
                 <div className="flag-container">
                     <img src={country?.flag} />
                 </div>
                 <div 
-                style={dark ? darkStyles : {}}
+                data-dark={dark}
                 className="text-container">
                     <h2 className="country-name">
                         {country?.name}
@@ -69,10 +64,7 @@ export default function DetailedCountryCard({
                             {country?.borders.map((border, index) => {
                                 const borderCountry = initialData.find(country => country.alpha3Code === border)
                                 return <span 
-                                style={dark ? {
-                                    backgroundColor: "hsl(209, 23%, 22%)",
-                                    color: "white"
-                                } : {}}
+                                data-dark={dark}
                                 className="country-link"
                                 onClick={() => setCountry(borderCountry)}>{`${borderCountry.name}`}</span>
                             })}
