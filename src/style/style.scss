@@ -154,6 +154,25 @@ header {
         }
     }
 }
+@media(max-width: 900px) {
+    .detailed-country-card {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+}
+@media(max-width: 530px) {
+    .detailed-country-card {
+        .text-container {
+            .details-container {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+
+        }
+    }
+}
 
 // 10. dark styles
 [data-dark="true"] {
