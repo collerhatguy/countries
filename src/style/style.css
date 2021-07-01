@@ -65,6 +65,12 @@ body {
   background-color: #858585;
 }
 
+a {
+  text-decoration: none;
+  display: inline-block;
+  color: black;
+}
+
 header {
   width: 100%;
   display: -webkit-box;
@@ -184,5 +190,40 @@ header button {
 
 .country-name {
   margin-bottom: 2rem;
+}
+
+.detailed-page {
+  padding: 3rem;
+}
+
+.detailed-country-card {
+  width: 100%;
+  margin: 1rem;
+  gap: 3rem;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+}
+
+.detailed-country-card .text-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column wrap;
+          flex-flow: column wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+
+.detailed-country-card .text-container h3, .detailed-country-card .text-container h2 {
+  width: 40%;
+  margin: 1rem;
 }
 /*# sourceMappingURL=style.css.map */

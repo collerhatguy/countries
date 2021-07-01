@@ -1,8 +1,9 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
 // components
 import MainPage from "./components/MainPage";
 import Header from "./components/Header";
+import DetailedCountryCard from "./components/DetailedCountryCard";
 // styles
 import "./style/style.css";
 // hooks
@@ -11,6 +12,11 @@ import useSearch from "./hooks/useSearch";
 
 function App() {
   const [data, setData, initialData] = useAPI();
+  const [country, setCountry] = useState({})
+
+  useEffect(() => {
+    console.log(country)
+  }, [country])
 
   const [regionSearch, setRegionSearch] = useState("")
   useSearch({
@@ -41,12 +47,25 @@ function App() {
         <Switch>
           <Route 
             path="/" 
+            exact
             component={() =>
               <MainPage
                 dark={dark} 
                 setRegionSearch={setRegionSearch} 
                 setCountrySearch={setCountrySearch} 
+                setCountry={setCountry}
                 data={data}
+              />
+            } 
+          />
+          <Route 
+            path="/details"
+            component={() => 
+              <DetailedCountryCard 
+                dark={dark}
+                country={country}
+                setCountry={setCountry}
+                initialData={initialData}
               />
             } 
           />
