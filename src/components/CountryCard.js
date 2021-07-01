@@ -8,7 +8,7 @@ export default function CountryCard({dark, country, moreDetail}) {
         to="/countries/details" >
             <div className="country-card">
                 <div className="flag-container">
-                    <img src={country.flag} />
+                    <img src={country.flag} alt={`${country.name}-flag`}/>
                 </div>
                 <div
                 data-dark={dark}
