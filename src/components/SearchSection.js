@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function SearchSection({dark, setRegion, setCountrySearch}) {
+export default function SearchSection({dark, setRegionSearch, setCountrySearch}) {
     const darkStyles = { 
         backgroundColor: "hsl(209, 23%, 22%)",
         color: "white"
@@ -20,7 +20,7 @@ export default function SearchSection({dark, setRegion, setCountrySearch}) {
                 Filter by Region
                 <input 
                 style={dark ? darkStyles : {}}
-                onChange={e => setRegion(e.target.value)}
+                onChange={e => setRegionSearch(e.target.value)}
                 list="region-list" 
                 name="region" 
                 id="region" />

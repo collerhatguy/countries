@@ -1,53 +1,39 @@
-import {useState, useEffect} from "react";
+import {useState} from "react";
 import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
-
-import SearchSection from "./components/SearchSection";
+// components
+import MainPage from "./components/MainPage";
 import Header from "./components/Header";
-import CountryList from "./components/CountryList";
+// styles
 import "./style/style.css";
+// hooks
+import useAPI from "./hooks/useAPI";
+import useSearch from "./hooks/useSearch";
 
 function App() {
-  const url = "https://restcountries.eu/rest/v2/all";
-  const [data, setData] = useState([])
-  const [initialData, setInitialData] = useState([])
-  async function getData() {
-    try {
-      const response = await fetch(url);
-      const json = await response.json();
-      setInitialData(json)
-      setData(json)
-      console.log(json)
-    } catch(err) {
-      throw err;
-    }
-  }
-
-  useEffect(() => {
-    getData()
-  },[]);
+  const [data, setData, initialData] = useAPI();
 
   const [regionSearch, setRegionSearch] = useState("")
-  useEffect(() => {
-    setData(initialData.filter(country => {
-      if (regionSearch === "") return true;
-      return country.region.includes(regionSearch);
-    }))
-  }, [regionSearch]);
+  useSearch({
+    searchQuery: regionSearch, 
+    initialData: initialData, 
+    setData: setData, 
+    searchTarget: "region"
+  })
 
   const [countrySearch, setCountrySearch] = useState("")
-  useEffect(() => {
-    setData(initialData.filter(country => {
-      if (countrySearch === "") return true;
-      return country.name.includes(countrySearch);
-    }))
-  }, [countrySearch]);
+  useSearch({
+    searchQuery: countrySearch, 
+    initialData: initialData, 
+    setData: setData, 
+    searchTarget: "name"
+  })
 
   const [dark, setDark] = useState(false);
   const darkStyles = {
     backgroundColor: "hsl(200, 15%, 8%)",
   }
   return (
-    <main 
+    <div 
     style={dark ? darkStyles : {}}
     className="App">
       <Header dark={dark} setDark={setDark} />
@@ -55,21 +41,18 @@ function App() {
         <Switch>
           <Route 
             path="/" 
-            component={
-              <SearchSection 
+            component={() =>
+              <MainPage
                 dark={dark} 
-                setRegion={setRegionSearch} 
+                setRegionSearch={setRegionSearch} 
                 setCountrySearch={setCountrySearch} 
+                data={data}
               />
             } 
           />
-          <Route 
-            path="/" 
-            component={<CountryList dark={dark} countries={data} />} 
-          />
         </Switch>
       </Router>
-    </main>
+    </div>
   );
 }
 
