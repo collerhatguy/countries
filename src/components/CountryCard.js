@@ -3,7 +3,9 @@ import {Link } from "react-router-dom";
 
 export default function CountryCard({dark, country, moreDetail}) {
     return (
-        <Link onClick={() => moreDetail()} to="/details" >
+        <Link 
+        onClick={() => moreDetail()} 
+        to="/countries/details" >
             <div className="country-card">
                 <div className="flag-container">
                     <img src={country.flag} />

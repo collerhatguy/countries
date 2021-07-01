@@ -43,7 +43,7 @@ function App() {
       <Router>
         <Switch>
           <Route 
-            path="" 
+            path="/countries/" 
             exact
             component={() =>
               <MainPage
@@ -56,7 +56,7 @@ function App() {
             } 
           />
           <Route 
-            path="/details"
+            path="/countries/details"
             component={() => 
               <DetailedCountryCard 
                 dark={dark}

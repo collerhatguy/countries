@@ -15,7 +15,7 @@ export default function DetailedCountryCard({
             <Link 
                 className="back-link"
                 data-dark={dark}           
-                to="/">Back</Link>
+                to="/countries/">Back</Link>
             <div className="detailed-country-card">
                 <div className="flag-container">
                     <img src={country?.flag} />
