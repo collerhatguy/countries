@@ -40,6 +40,7 @@ function App() {
   }
   return (
     <div 
+    data-dark={dark}
     style={dark ? darkStyles : {}}
     className="App">
       <Header dark={dark} setDark={setDark} />
