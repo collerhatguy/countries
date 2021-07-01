@@ -43,7 +43,7 @@ function App() {
       <Router>
         <Switch>
           <Route 
-            path="/" 
+            path="" 
             exact
             component={() =>
               <MainPage
