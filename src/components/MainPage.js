@@ -2,7 +2,7 @@ import React from 'react';
 import SearchSection from "./SearchSection";
 import CountryList from "./CountryList";
 
-export default function MainPage({dark, setRegionSearch, setCountrySearch, data, setCountry}) {
+export default function MainPage({dark, setRegionSearch, setCountrySearch, data}) {
     return (
         <main data-dark={dark}>
             <SearchSection 
@@ -13,7 +13,6 @@ export default function MainPage({dark, setRegionSearch, setCountrySearch, data,
             <CountryList 
             dark={dark} 
             countries={data} 
-            setCountry={setCountry} 
             />
         </main>
     )

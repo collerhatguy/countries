@@ -12,11 +12,6 @@ import useSearch from "./hooks/useSearch";
 
 function App() {
   const [data, setData, initialData] = useAPI();
-  const [country, setCountry] = useState({})
-
-  useEffect(() => {
-    console.log(country)
-  }, [country])
 
   const [regionSearch, setRegionSearch] = useState("")
   useSearch({
@@ -50,18 +45,15 @@ function App() {
                 dark={dark} 
                 setRegionSearch={setRegionSearch} 
                 setCountrySearch={setCountrySearch} 
-                setCountry={setCountry}
                 data={data}
               />
             } 
           />
           <Route 
-            path="/countries/details"
+            path="/countries/:countryName"
             component={() => 
               <DetailedCountryCard 
                 dark={dark}
-                country={country}
-                setCountry={setCountry}
                 initialData={initialData}
               />
             } 

@@ -1,24 +1,24 @@
-import React from 'react';
-import {Link} from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import {Link, useHistory, useParams} from "react-router-dom";
 
-export default function DetailedCountryCard({
-    dark, 
-    country, 
-    setCountry, 
-    initialData
-}) {
-
+export default function DetailedCountryCard(props) {
+    const {dark, initialData} = props;
+    const { countryName } = useParams();
+    const [country, setCountry] = useState()
+    useEffect(() => {
+        setCountry(initialData.find(c => c.name === countryName));
+    }, [countryName])
     return (
         <main 
         data-dark={dark}
         className="detailed-page">
-            <Link 
-                className="back-link"
-                data-dark={dark}           
-                to="/countries/">Back</Link>
+            <Link className="back-link"
+            data-dark={dark}           
+            to="/countries/"
+            >Back</Link>
             <div className="detailed-country-card">
                 <div className="flag-container">
-                    <img src={country?.flag} alt={`${country.name}-flag`} />
+                    <img src={country?.flag} alt={`${country?.name}-flag`} />
                 </div>
                 <div 
                 data-dark={dark}
@@ -63,10 +63,10 @@ export default function DetailedCountryCard({
                             <span className="country-label">Border Countries: </span>
                             {country?.borders.map((border, index) => {
                                 const borderCountry = initialData.find(country => country.alpha3Code === border)
-                                return <span 
+                                return <Link 
+                                to={`/countries/${borderCountry.name}`}
                                 data-dark={dark}
-                                className="country-link"
-                                onClick={() => setCountry(borderCountry)}>{`${borderCountry.name}`}</span>
+                                className="country-link">{`${borderCountry.name}`}</Link>
                             })}
                         </h3>
                         }
