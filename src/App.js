@@ -14,24 +14,17 @@ function App(props) {
 
   return (
     <div 
-    data-dark={dark}
-    className="App">
+      data-dark={dark}
+      className="App">
       <Header/>
       <Router>
         <Switch>
-          <Route 
-            path="/countries/" 
-            exact
-            component={() =>
-              <MainPage dark={dark}/>
-            } 
-          />
-          <Route 
-            path="/countries/:countryName"
-            component={() => 
-              <DetailedCountryCard dark={dark}/>
-            } 
-          />
+          <Route path="/countries/:countryName">
+            <DetailedCountryCard dark={dark}/>
+          </Route>
+          <Route path="/countries/">
+            <MainPage dark={dark}/>
+          </Route>
         </Switch>
       </Router>
     </div>

@@ -11,20 +11,20 @@ export default function CountryCard(props) {
                     <img src={flag} alt={`${name}-flag`}/>
                 </div>
                 <div
-                data-dark={dark}
-                className="text-container">
+                    data-dark={dark}
+                    className="text-container">
                     <h2 className="country-name">
                         {name}
                     </h2>
-                    <h3 className="country-population">
+                    <h3>
                         <span className="country-label">Population: </span> 
                         {population.toLocaleString("en-US")}
                     </h3>
-                    <h3 className="country-region">
+                    <h3>
                         <span className="country-label">Region: </span>
                         {region}
                     </h3>
-                    <h3 className="country-capital">
+                    <h3>
                         <span className="country-label">Capital: </span>
                         {capital}
                     </h3>

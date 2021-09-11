@@ -12,6 +12,7 @@ const initialForm = {
 function SearchSection(props) {
     const { dark, search } = props
     const [form, handleChange] = useForm(initialForm)
+    const { country, region } = form
 
     useDebounce(() => 
         search(form)
@@ -22,20 +23,19 @@ function SearchSection(props) {
             <input
                 data-dark={dark}
                 onChange={handleChange}
-                value={form.country}
+                value={country}
                 className="search-bar" 
                 type="text"
                 name="name" 
                 placeholder="Search for a country" 
             />
             <label 
-                style={dark ? {color: "white"} : {}}
-                for="region">
+                htmlFor="region">
                 Filter by Region
                 <input
                     data-dark={dark} 
                     onChange={handleChange}
-                    value={form.region}
+                    value={region}
                     list="region-list" 
                     name="region" 
                     id="region" 

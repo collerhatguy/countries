@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
-import { Link, useParams, useHistory } from "react-router-dom"
+import { useParams, useHistory } from "react-router-dom"
 import BorderList from './BorderList'
 
 const defaultCountry = {
@@ -47,11 +47,11 @@ function DetailedCountryCard(props) {
         <main 
         data-dark={dark}
         className="detailed-page">
-            <Link 
+            <button 
                 className="back-link"
                 data-dark={dark}
                 onClick={goBack}
-            >Back</Link>
+            >Back</button>
             <div className="detailed-country-card">
                 <div className="flag-container">
                     <img src={flag} alt={`${name}-flag`} />
@@ -63,31 +63,31 @@ function DetailedCountryCard(props) {
                         {name}
                     </h2>
                     <div className="details-container">
-                        <h3 className="country-native-name">
+                        <h3>
                             <span className="country-label">Native Name: </span> 
                             {nativeName}
                         </h3>
-                        <h3 className="country-population">
+                        <h3>
                             <span className="country-label">Population: </span> 
                             {population.toLocaleString("en-US")}
                         </h3>
-                        <h3 className="country-region">
+                        <h3>
                             <span className="country-label">Region: </span>
                             {region}
                         </h3>
-                        <h3 className="country-sub-region">
+                        <h3>
                             <span className="country-label">Sub Region: </span>
                             {subregion}
                         </h3>
-                        <h3 className="country-capital">
+                        <h3>
                             <span className="country-label">Capital: </span>
                             {capital}
                         </h3>
-                        <h3 className="country-top-level-domain">
+                        <h3>
                             <span className="country-label">Top Level Domain: </span>
                             {topLevelDomain}
                         </h3>
-                        <h3 className="country-currency">
+                        <h3>
                             <span className="country-label">Currency: </span>
                             {currencyName}
                         </h3>
