@@ -1,79 +1,118 @@
-import React, { useState, useEffect } from 'react';
-import {Link, useHistory, useParams} from "react-router-dom";
+import React, { useState, useEffect } from 'react'
+import { connect } from 'react-redux'
+import { Link, useParams, useHistory } from "react-router-dom"
+import BorderList from './BorderList'
 
-export default function DetailedCountryCard(props) {
-    const {dark, initialData} = props;
-    const { countryName } = useParams();
-    const [country, setCountry] = useState()
+const defaultCountry = {
+    name: "",
+    flag: "",
+    nativeName: "",
+    population: "",
+    region: "", 
+    subregion: "", 
+    capital: "", 
+    topLevelDomain: [], 
+    currencies: [{ name: "" }], 
+    languages: [],
+    borders: []
+}
+
+function DetailedCountryCard(props) {
+    const { dark, countries } = props
+    const { countryName } = useParams()
+    const [country, setCountry] = useState(defaultCountry)
+    const { goBack } = useHistory()
+
     useEffect(() => {
-        setCountry(initialData.find(c => c.name === countryName));
-    }, [countryName])
+        setCountry(countries.find(c => 
+            c.name === countryName
+        ))
+    }, [countryName, countries])
+    
+    const { 
+        name, 
+        flag, 
+        nativeName, 
+        population, 
+        region, 
+        subregion, 
+        capital, 
+        topLevelDomain: [topLevelDomain], 
+        currencies: [{ name: currencyName}], 
+        languages,
+        borders
+    } = country
+
     return (
         <main 
         data-dark={dark}
         className="detailed-page">
-            <Link className="back-link"
-            data-dark={dark}           
-            to="/countries/"
+            <Link 
+                className="back-link"
+                data-dark={dark}
+                onClick={goBack}
             >Back</Link>
             <div className="detailed-country-card">
                 <div className="flag-container">
-                    <img src={country?.flag} alt={`${country?.name}-flag`} />
+                    <img src={flag} alt={`${name}-flag`} />
                 </div>
                 <div 
-                data-dark={dark}
-                className="text-container">
+                    data-dark={dark}
+                    className="text-container">
                     <h2 className="country-name">
-                        {country?.name}
+                        {name}
                     </h2>
                     <div className="details-container">
                         <h3 className="country-native-name">
                             <span className="country-label">Native Name: </span> 
-                            {country?.nativeName}
+                            {nativeName}
                         </h3>
                         <h3 className="country-population">
                             <span className="country-label">Population: </span> 
-                            {country?.population.toLocaleString("en-US")}
+                            {population.toLocaleString("en-US")}
                         </h3>
                         <h3 className="country-region">
                             <span className="country-label">Region: </span>
-                            {country?.region}
+                            {region}
                         </h3>
                         <h3 className="country-sub-region">
                             <span className="country-label">Sub Region: </span>
-                            {country?.subregion}
+                            {subregion}
                         </h3>
                         <h3 className="country-capital">
                             <span className="country-label">Capital: </span>
-                            {country?.capital}
+                            {capital}
                         </h3>
                         <h3 className="country-top-level-domain">
                             <span className="country-label">Top Level Domain: </span>
-                            {country?.topLevelDomain[0]}
+                            {topLevelDomain}
                         </h3>
                         <h3 className="country-currency">
                             <span className="country-label">Currency: </span>
-                            {country?.currencies[0].name}
+                            {currencyName}
                         </h3>
                         <h3 className="country-languages">
                             <span className="country-label">Languages: </span>
-                            {country?.languages.map((language, index) => `${language.name}${index === country.languages.length - 1 ? "" : ","} `)}
+                            {
+                                languages.map(language => 
+                                    language.name
+                                ).join(", ")
+                            }
                         </h3>
-                        {country?.borders.length === 0 ? null : <h3 className="country-borders">
-                            <span className="country-label">Border Countries: </span>
-                            {country?.borders.map((border, index) => {
-                                const borderCountry = initialData.find(country => country.alpha3Code === border)
-                                return <Link 
-                                to={`/countries/${borderCountry.name}`}
-                                data-dark={dark}
-                                className="country-link">{`${borderCountry.name}`}</Link>
-                            })}
-                        </h3>
-                        }
-                        
+                        <BorderList 
+                            borders={borders} 
+                            dark={dark} 
+                            countries={countries}
+                        />
                     </div>
                 </div>
             </div>
         </main>
     )
 }
+
+const mapStateToProps = state => ({
+    countries: state.allCountries
+})
+
+export default connect(mapStateToProps)(DetailedCountryCard)

@@ -6,7 +6,7 @@ function CountryList(props) {
     const { dark, countries } = props
     return (
         <section className="country-list">
-            {countries?.map((country, index) => 
+            {countries.map((country, index) => 
                 <CountryCard 
                     dark={dark} 
                     country={country} 
