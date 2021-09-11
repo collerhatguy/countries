@@ -4,6 +4,7 @@ import { useParams, useHistory } from "react-router-dom"
 import BorderList from './BorderList'
 import Detail from './Detail'
 import Flag from "./Flag"
+import { v4 as uuid } from "uuid"
 
 const defaultCountry = {
     name: "",
@@ -61,6 +62,7 @@ function DetailedCountryCard(props) {
                                 <Detail 
                                     detail={d} 
                                     value={country[d]}
+                                    key={uuid()}
                                 />
                             )
                         }

@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from "react-router-dom"
 import Detail from "./Detail"
 import Flag from './Flag'
+import { v4 as uuid } from "uuid"
 
 export default function CountryCard(props) {
     const { dark, country } = props
@@ -28,6 +29,7 @@ export default function CountryCard(props) {
                             <Detail 
                                 detail={d} 
                                 value={country[d]}
+                                key={uuid()}
                             />
                         )
                     }
