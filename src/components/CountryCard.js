@@ -1,33 +1,36 @@
-import React from 'react';
-import {Link } from "react-router-dom";
+import React from 'react'
+import { Link } from "react-router-dom"
+import Detail from "./Detail"
+import Flag from './Flag'
 
 export default function CountryCard(props) {
     const { dark, country } = props
-    const { name, flag, population, region, capital } = country
+    const { 
+        name, 
+        flag, 
+    } = country
+    const details = ["Population", "Region", "Capital"]
     return (
         <Link to={`/countries/${name}`} >
             <div className="country-card">
-                <div className="flag-container">
-                    <img src={flag} alt={`${name}-flag`}/>
-                </div>
+                <Flag 
+                    flag={flag} 
+                    name={name}
+                />
                 <div
                     data-dark={dark}
                     className="text-container">
                     <h2 className="country-name">
                         {name}
                     </h2>
-                    <h3>
-                        <span className="country-label">Population: </span> 
-                        {population.toLocaleString("en-US")}
-                    </h3>
-                    <h3>
-                        <span className="country-label">Region: </span>
-                        {region}
-                    </h3>
-                    <h3>
-                        <span className="country-label">Capital: </span>
-                        {capital}
-                    </h3>
+                    {
+                        details.map(d => 
+                            <Detail 
+                                detail={d} 
+                                value={country[d]}
+                            />
+                        )
+                    }
                 </div>
             </div>
         </Link>

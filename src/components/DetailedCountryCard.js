@@ -2,18 +2,12 @@ import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { useParams, useHistory } from "react-router-dom"
 import BorderList from './BorderList'
+import Detail from './Detail'
+import Flag from "./Flag"
 
 const defaultCountry = {
     name: "",
     flag: "",
-    nativeName: "",
-    population: "",
-    region: "", 
-    subregion: "", 
-    capital: "", 
-    topLevelDomain: [], 
-    currencies: [{ name: "" }], 
-    languages: [],
     borders: []
 }
 
@@ -32,16 +26,14 @@ function DetailedCountryCard(props) {
     const { 
         name, 
         flag, 
-        nativeName, 
-        population, 
-        region, 
-        subregion, 
-        capital, 
-        topLevelDomain: [topLevelDomain], 
-        currencies: [{ name: currencyName}], 
-        languages,
         borders
     } = country
+
+    const details = [
+        "Population", "Region", "Capital", 
+        "Native_Name", "Sub_Region", "Top_Level_Domain",
+        "Currency", "Languages"
+    ]
 
     return (
         <main 
@@ -53,9 +45,10 @@ function DetailedCountryCard(props) {
                 onClick={goBack}
             >Back</button>
             <div className="detailed-country-card">
-                <div className="flag-container">
-                    <img src={flag} alt={`${name}-flag`} />
-                </div>
+                <Flag 
+                    flag={flag}
+                    name={name}
+                />
                 <div 
                     data-dark={dark}
                     className="text-container">
@@ -63,42 +56,14 @@ function DetailedCountryCard(props) {
                         {name}
                     </h2>
                     <div className="details-container">
-                        <h3>
-                            <span className="country-label">Native Name: </span> 
-                            {nativeName}
-                        </h3>
-                        <h3>
-                            <span className="country-label">Population: </span> 
-                            {population.toLocaleString("en-US")}
-                        </h3>
-                        <h3>
-                            <span className="country-label">Region: </span>
-                            {region}
-                        </h3>
-                        <h3>
-                            <span className="country-label">Sub Region: </span>
-                            {subregion}
-                        </h3>
-                        <h3>
-                            <span className="country-label">Capital: </span>
-                            {capital}
-                        </h3>
-                        <h3>
-                            <span className="country-label">Top Level Domain: </span>
-                            {topLevelDomain}
-                        </h3>
-                        <h3>
-                            <span className="country-label">Currency: </span>
-                            {currencyName}
-                        </h3>
-                        <h3 className="country-languages">
-                            <span className="country-label">Languages: </span>
-                            {
-                                languages.map(language => 
-                                    language.name
-                                ).join(", ")
-                            }
-                        </h3>
+                        {
+                            details.map(d => 
+                                <Detail 
+                                    detail={d} 
+                                    value={country[d]}
+                                />
+                            )
+                        }
                         <BorderList 
                             borders={borders} 
                             dark={dark} 
