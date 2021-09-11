@@ -1,57 +1,35 @@
 import React from 'react';
 import {Link } from "react-router-dom";
-import styled from 'styled-components';
 
-export default function CountryCard({ country }) {
-    const StyledCard = styled.div`
-        background-color: ${props => props.theme.panelColor};
-        color: ${props => props.theme.fontColor};
-        margin: 1rem .5rem;
-        display: grid;
-        grid-template-columns: 1fr;
-        grid-template-rows: 1fr 1fr;
-        width: 300px;
-        height: 400px;
-        .flag-container {
-            width: 100%;
-            height: 100%;
-            img {
-                width: 100%;
-                height: 100%;
-            }
-        }
-        .text-container {
-            min-height: min-content;
-            padding: 2rem;
-            span, .country-name {
-                font-weight: 800;
-            }
-        }
-        .country-name {
-            margin-bottom: 2rem;
-        }
-    `
+export default function CountryCard(props) {
+    const { dark, country } = props
+    const { name, flag, population, region, capital } = country
     return (
-        <Link to={`/countries/${country.name}`} >
-            <StyledCard>
+        <Link to={`/countries/${name}`} >
+            <div className="country-card">
                 <div className="flag-container">
-                    <img src={country.flag} alt={`${country.name}-flag`}/>
+                    <img src={flag} alt={`${name}-flag`}/>
                 </div>
-                <div className="text-container">
+                <div
+                data-dark={dark}
+                className="text-container">
                     <h2 className="country-name">
-                        {country.name}
+                        {name}
                     </h2>
-                    <h3><span>Population: </span> 
-                        {country.population.toLocaleString("en-US")}
+                    <h3 className="country-population">
+                        <span className="country-label">Population: </span> 
+                        {population.toLocaleString("en-US")}
                     </h3>
-                    <h3><span>Region: </span>
-                        {country.region}
+                    <h3 className="country-region">
+                        <span className="country-label">Region: </span>
+                        {region}
                     </h3>
-                    <h3><span>Capital: </span>
-                        {country.capital}
+                    <h3 className="country-capital">
+                        <span className="country-label">Capital: </span>
+                        {capital}
                     </h3>
                 </div>
-            </StyledCard>
+            </div>
         </Link>
     )
 }

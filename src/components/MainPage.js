@@ -1,20 +1,17 @@
 import React from 'react';
 import SearchSection from "./SearchSection";
 import CountryList from "./CountryList";
-import styled from 'styled-components';
 
-export default function MainPage({ setRegionSearch, setCountrySearch, data}) {
-    const StyledMain = styled.main`
-        background-color: ${props => props.theme.background};
-        color: ${props => props.theme.fontColor};
-    `
+function MainPage(props) {
+    const { dark } = props
     return (
-        <StyledMain>
-            <SearchSection 
-            setRegionSearch={setRegionSearch} 
-            setCountrySearch={setCountrySearch} 
-            />
-            <CountryList countries={data} />
-        </StyledMain>
+        <main data-dark={dark}>
+            <SearchSection dark={dark}/>
+            <CountryList dark={dark}/>
+        </main>
     )
 }
+
+
+
+export default MainPage

@@ -1,61 +1,45 @@
-import { useState } from "react";
-import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
-// components
-import MainPage from "./components/MainPage";
-import Header from "./components/Header";
-import DetailedCountryCard from "./components/DetailedCountryCard";
-// styles
-import "./style/style.css";
-import { darkTheme, lightTheme } from "./theme";
-// hooks
-import useAPI from "./hooks/useAPI";
-import useSearch from "./hooks/useSearch";
-import styled, { ThemeProvider } from "styled-components";
+import { useEffect } from "react"
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
+import MainPage from "./components/MainPage"
+import Header from "./components/Header"
+import DetailedCountryCard from "./components/DetailedCountryCard"
+import "./style/style.css"
+import { connect } from "react-redux" 
+import { getData } from "./actions"
 
-function App() {
-  const [data, setData, initialData] = useAPI();
+function App(props) {
+  const { getData, dark } = props
 
-  const [regionSearch, setRegionSearch] = useState("")
-  useSearch({
-    searchQuery: regionSearch, 
-    initialData: initialData, 
-    setData: setData, 
-    searchTarget: "region"
-  })
-  const [countrySearch, setCountrySearch] = useState("")
-  useSearch({
-    searchQuery: countrySearch, 
-    initialData: initialData, 
-    setData: setData, 
-    searchTarget: "name"
-  })
-  const [dark, setDark] = useState(false);
+  useEffect(getData, [])
 
-  const StyledDiv = styled.div`
-    background-color: ${props => props.theme.background};
-  `
   return (
-    <ThemeProvider theme={dark ? darkTheme : lightTheme}>
-      <StyledDiv>
-        <Header dark={dark} setDark={setDark} />
-        <Router>
-          <Switch>
-            <Route path="/countries/" exact>
-                <MainPage
-                  setRegionSearch={setRegionSearch} 
-                  setCountrySearch={setCountrySearch} 
-                  data={data}
-                />
-            </Route>
-            <Route path="/countries/:countryName">
-                <DetailedCountryCard initialData={initialData} />
-            </Route>
-            <Redirect to="/countries/" />
-          </Switch>
-        </Router>
-      </StyledDiv>
-    </ThemeProvider>
+    <div 
+    data-dark={dark}
+    className="App">
+      <Header/>
+      <Router>
+        <Switch>
+          <Route 
+            path="/countries/" 
+            exact
+            component={() =>
+              <MainPage dark={dark}/>
+            } 
+          />
+          <Route 
+            path="/countries/:countryName"
+            component={() => 
+              <DetailedCountryCard dark={dark}/>
+            } 
+          />
+        </Switch>
+      </Router>
+    </div>
   );
 }
 
-export default App;
+const mapStateToProps = state => ({
+  dark: state.dark
+})
+
+export default connect(mapStateToProps, { getData })(App);
