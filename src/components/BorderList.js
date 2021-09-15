@@ -18,7 +18,7 @@ export default function BorderList(props) {
     return (
         <StyledBorders className="country-borders">
             <span className="country-label">
-                Border Countries:     
+                Border Countries: <br/>    
             </span>
             {
                 newBorders.map(border =>
