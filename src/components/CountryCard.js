@@ -1,8 +1,7 @@
 import React from 'react'
 import { Link } from "react-router-dom"
-import Detail from "./Detail"
+import DetailList from "./DetailList"
 import Flag from './Flag'
-import { v4 as uuid } from "uuid"
 
 export default function CountryCard(props) {
     const { dark, country } = props
@@ -24,15 +23,10 @@ export default function CountryCard(props) {
                     <h2 className="country-name">
                         {name}
                     </h2>
-                    {
-                        details.map(d => 
-                            <Detail 
-                                detail={d} 
-                                value={country[d]}
-                                key={uuid()}
-                            />
-                        )
-                    }
+                    <DetailList 
+                        details={details} 
+                        country={country} 
+                    />
                 </div>
             </div>
         </Link>
