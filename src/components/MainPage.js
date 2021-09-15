@@ -1,14 +1,19 @@
 import React from 'react';
 import SearchSection from "./SearchSection";
 import CountryList from "./CountryList";
+import styled from "styled-components"
 
-function MainPage(props) {
-    const { dark } = props
+const StyledMain = styled.main`
+    background-color: ${props => props.theme.background};
+    color: ${props => props.theme.fontColor};
+`
+
+function MainPage() {
     return (
-        <main data-dark={dark}>
-            <SearchSection dark={dark}/>
-            <CountryList dark={dark}/>
-        </main>
+        <StyledMain>
+            <SearchSection/>
+            <CountryList/>
+        </StyledMain>
     )
 }
 

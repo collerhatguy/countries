@@ -3,6 +3,27 @@ import { connect } from 'react-redux'
 import useForm from '../hooks/useForm'
 import useDebounce from '../hooks/useDebounce'
 import { search } from "../actions"
+import styled from "styled-components"
+
+const StyledSearch = styled.section`
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    input {
+        color: ${props => props.theme.fontColor};
+        margin: 2rem;
+        padding: 1rem;
+        outline: none;
+    }
+    .search-bar {
+        width: 50%;
+    }
+    @media(max-width: 500px) {
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+`
 
 const initialForm = {
     name: "",
@@ -19,7 +40,7 @@ function SearchSection(props) {
     , 1000, [form])
 
     return (
-        <section className="search-section">
+        <StyledSearch className="search-section">
             <input
                 data-dark={dark}
                 onChange={handleChange}
@@ -48,7 +69,7 @@ function SearchSection(props) {
                 <option value="Europe"/>
                 <option value="Oceania"/>
             </datalist>
-        </section>
+        </StyledSearch>
     )
 }
 

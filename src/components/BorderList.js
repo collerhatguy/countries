@@ -1,6 +1,11 @@
 import React from 'react'
 import { Link } from "react-router-dom"
+import styled from 'styled-components'
 import { v4 as uuid } from "uuid"
+
+const StyledBorders = styled.h3`
+    margin-bottom: 1rem;
+`
 
 export default function BorderList(props) {
     const { borders, dark, countries } = props
@@ -11,8 +16,10 @@ export default function BorderList(props) {
         ).name
     )
     return (
-        <h3 className="country-borders">
-            <span className="country-label">Border Countries: </span>
+        <StyledBorders className="country-borders">
+            <span className="country-label">
+                Border Countries:     
+            </span>
             {
                 newBorders.map(border =>
                     <Link 
@@ -23,6 +30,6 @@ export default function BorderList(props) {
                     >{ border }</Link>
                 )
             }
-        </h3>
+        </StyledBorders>
     )
 }
