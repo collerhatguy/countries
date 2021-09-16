@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import useForm from '../hooks/useForm'
+import { useForm } from "use-form-coolhatguy"
 import useDebounce from '../hooks/useDebounce'
 import { search } from "../actions"
 import styled from "styled-components"
@@ -11,6 +11,7 @@ const StyledSearch = styled.section`
     justify-content: space-between;
     input {
         color: ${props => props.theme.fontColor};
+        background-color: ${props => props.theme.panelColor};
         margin: 2rem;
         padding: 1rem;
         outline: none;
@@ -32,7 +33,7 @@ const initialForm = {
 
 function SearchSection(props) {
     const { dark, search } = props
-    const [form, handleChange] = useForm(initialForm)
+    const [form, handleChange] = useForm(initialForm, null)
     const { country, region } = form
 
     useDebounce(() => 
