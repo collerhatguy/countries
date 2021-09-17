@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { useForm } from "use-form-coolhatguy"
-import useDebounce from '../hooks/useDebounce'
+import { useDebounce } from 'use-debounce-coolhatguy'
 import { search } from "../actions"
 import styled from "styled-components"
 
